@@ -1,0 +1,292 @@
+@font-face {
+  font-family: "Geist";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --size: 20px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: hsl(0 0% 0%);
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-screen.hidden {
+  display: none;
+}
+
+.loader {
+  width: 100px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#ffffff 0 0);
+  background:
+    var(--c) 0 60px,
+    var(--c) right 28px bottom 28px,
+    var(--c) right 28px top 28px,
+    var(--c) 28px 28px,
+    var(--c) 28px 100%,
+    var(--c) 100% 100%,
+    var(--c) 100% 0,
+    var(--c) 0 0;
+  animation: l7 2s infinite alternate;
+}
+
+@keyframes l7 {
+  0%    {background-size: 0    8px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0}
+  12.5% {background-size: 68px 7px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0}
+  25%   {background-size: 68px 8px, 8px 36px, 0    8px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0}
+  37.5% {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 0,   0    8px, 8px 0,   0    8px, 8px 0}
+  50%   {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 68px, 0    8px, 8px 0,   0    8px, 8px 0}
+  62.5% {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 68px, 68px 8px, 8px 0,   0    8px, 8px 0}
+  75%   {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 68px, 68px 8px, 8px 100%, 0    8px, 8px 0}
+  87.5% {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 68px, 68px 8px, 8px 100%, 100% 8px, 8px 0}
+  95%, 100% {background-size: 68px 8px, 8px 36px, 36px 8px, 8px 68px, 68px 8px, 8px 100%, 100% 8px, 8px 68px}
+}
+
+.el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 180deg at 50% 70%, hsla(0,0%,98%,1) 0deg, #fbfaf9 72deg, #fcfbfb 144deg, #f8fafb 216deg, #fbfcfc 288deg, hsla(0,0%,98%,1) 360deg);
+  -webkit-mask:
+    radial-gradient(circle at 50% 50%, white 2px, transparent 2.5px) 50% 50% / var(--size) var(--size),
+    url("https://assets.codepen.io/605876/noise-mask.png") 256px 50% / 256px 256px;
+  mask:
+    radial-gradient(circle at 50% 50%, white 2px, transparent 2.5px) 50% 50% / var(--size) var(--size),
+    url("https://assets.codepen.io/605876/noise-mask.png") 256px 50% / 256px 256px;
+  -webkit-mask-composite: source-in, xor;
+  mask-composite: intersect;
+  animation: flicker 20s infinite linear;
+  z-index: 1;
+}
+
+@keyframes flicker {
+  to {
+    -webkit-mask-position: 50% 50%, 0 50%;
+    mask-position: 50% 50%, 0 50%;
+  }
+}
+
+.content {
+  display: none;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.content.visible {
+  display: block;
+}
+
+.wave-container {
+  position: relative;
+}
+
+.wave-text {
+  
+  top: 40%;
+  left: 9.7%;
+  margin: 0;
+  font-size: clamp(6rem, 8vw + 1rem, 14rem);
+  font-family: "Geist", sans-serif;
+  font-weight: 140;
+  color: white;
+}
+
+.wave-text span {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(1) { animation-delay: 0s; }
+.wave-text span:nth-child(2) { animation-delay: 0.2s; }
+.wave-text span:nth-child(3) { animation-delay: 0.4s; }
+.wave-text span:nth-child(4) { animation-delay: 0.6s; }
+.wave-text span:nth-child(5) { animation-delay: 0.8s; }
+.wave-text span:nth-child(6) { animation-delay: 1s; }
+.wave-text span:nth-child(7) { animation-delay: 1.2s; }
+.wave-text span:nth-child(8) { animation-delay: 1.4s; }
+.wave-text span:nth-child(9) { animation-delay: 1.6s; }
+.wave-text span:nth-child(10) { animation-delay: 1.8s; }
+.wave-text span:nth-child(11) { animation-delay: 2s; }
+.wave-text span:nth-child(12) { animation-delay: 2.2s; }
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  z-index: 0;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+  top: 13rem;
+  width: 15rem;
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.btn:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.btn:hover:before {
+  opacity: 1;
+}
+
+.btn:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1.5s;
+}
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.info{
+  color: white;
+    text-align: left;
+    position: absolute;
+    top: 20rem;
+    left: -3rem;
+}
+
+.info b{
+  font-family: "Codystar", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.wave-text span{
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.col{
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: -17rem;
+  left: 76rem;
+}
+
+.copy i{
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: -17rem;
+  left: 0rem;
+}
+.sign{
+  color: white;
+  font-family: "Monsieur La Doulaise", cursive !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  position: absolute;
+  top: 28rem;
+  left: 76rem;
+}
+.social{
+  color: white;
+  position: absolute;
+  font-size: 3rem;
+  top: -17.5rem;
+  left: 35rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.social div{
+  margin-right: 4.5rem;
+}
+.social div a{
+  text-decoration: none;
+  color: white;
+}
+
+.col a{
+  text-decoration: none;
+  color: white;
+}
+
+
